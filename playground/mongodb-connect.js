@@ -8,47 +8,34 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
 	}
 	console.log('Connected to MondoDB server');
 
-	// db.collection('Todos')
-	// 	.find({
-	// 		_id: new ObjectID('5c60a8dc94ea2202094e6f7c')
-	// 	})
-	// 	.toArray()
-	// 	.then(
-	// 		docs => {
-	// 			console.log('Todos');
-	// 			console.log(JSON.stringify(docs, undefined, 2));
-	// 		},
-	// 		err => {
-	// 			console.log('Unable to fetch todos', err);
+	// db.collection('Todos').insertOne(
+	// 	{
+	// 		text: 'Something to do',
+	// 		completed: false
+	// 	},
+	// 	(err, result) => {
+	// 		if (err) {
+	// 			return console.log('Unable to insert todo', err);
 	// 		}
-	// 	);
 
-	// db.collection('Todos')
-	// 	.find()
-	// 	.count()
-	// 	.then(
-	// 		counts => {
-	// 			console.log(`Todos count: ${counts}`);
-	// 		},
-	// 		err => {
-	// 			console.log('Unable to fetch todos', err);
-	// 		}
-	//  );
+	// 		console.log(JSON.stringify(result.ops, undefined, 2));
+	// 	}
+	// );
 
-	db.collection('Users')
-		.find({
-			name: 'Andrew'
-		})
-		.toArray()
-		.then(
-			docs => {
-				console.log('Users');
-				console.log(JSON.stringify(docs, undefined, 2));
-			},
-			err => {
-				console.log('Unable to fetch users', err);
+	db.collection('Users').insertOne(
+		{
+			name: 'Alexander Garuba',
+			age: 22,
+			location: 'Lagos'
+		},
+		(err, result) => {
+			if (err) {
+				return console.log('Unable to insert user', err);
 			}
-		);
 
-	//db.close();
+			console.log(JSON.stringify(result.ops, undefined, 2));
+		}
+	);
+
+	db.close();
 });
